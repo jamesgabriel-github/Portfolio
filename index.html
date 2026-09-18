@@ -1,0 +1,593 @@
+<title>James Abad Gabriel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap">
+
+<style>
+/* ============ tokens ============ */
+:root{
+  color-scheme: light;
+  --bg:#EAEEEE;
+  --bg-sunk:#E1E7E6;
+  --surface:#F8FAFA;
+  --ink:#0B1B1E;
+  --ink-2:#2C4448;
+  --muted:#5E7276;
+  --line:#C4D2D2;
+  --line-soft:#D9E2E1;
+  --web:#0B6C76;
+  --web-wash:#DBEDEF;
+  --native:#A44C0C;
+  --native-wash:#F7E6D7;
+  --focus:#0B6C76;
+  --dot:rgba(11,27,30,.14);
+  --shade:rgba(11,27,30,.05);
+
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#071315;
+    --bg-sunk:#040E10;
+    --surface:#0D2125;
+    --ink:#E3EDEC;
+    --ink-2:#BDCFCE;
+    --muted:#87A0A2;
+    --line:#1D3B3F;
+    --line-soft:#142C30;
+    --web:#4FD6DE;
+    --web-wash:#07282C;
+    --native:#FF9E4A;
+    --native-wash:#2A1809;
+    --focus:#4FD6DE;
+    --dot:rgba(227,237,236,.13);
+    --shade:rgba(227,237,236,.045);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#071315;
+  --bg-sunk:#040E10;
+  --surface:#0D2125;
+  --ink:#E3EDEC;
+  --ink-2:#BDCFCE;
+  --muted:#87A0A2;
+  --line:#1D3B3F;
+  --line-soft:#142C30;
+  --web:#4FD6DE;
+  --web-wash:#07282C;
+  --native:#FF9E4A;
+  --native-wash:#2A1809;
+  --focus:#4FD6DE;
+  --dot:rgba(227,237,236,.13);
+  --shade:rgba(227,237,236,.045);
+}
+
+/* ============ base ============ */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:1.0625rem;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:2px}
+h1,h2,h3,h4{font-family:var(--f-display);margin:0;text-wrap:balance;font-weight:700}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+
+.page{
+  max-width:1160px;
+  margin-inline:auto;
+  padding-inline:clamp(18px,4.5vw,60px);
+}
+
+.mono{
+  font-family:var(--f-mono);
+  font-size:.7rem;
+  font-weight:500;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ============ top bar ============ */
+.bar{
+  position:sticky;
+  top:env(safe-area-inset-top,0px);
+  z-index:20;
+  background:var(--bg);
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line-soft);
+}
+.bar-in{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;flex-wrap:wrap;
+  padding-block:11px;
+}
+.sig{
+  font-family:var(--f-display);font-weight:700;font-size:.9rem;
+  letter-spacing:-.01em;text-decoration:none;
+}
+.sig i{font-style:normal;color:var(--muted);font-weight:500}
+.bar nav{display:flex;gap:clamp(12px,2.4vw,26px);flex-wrap:wrap}
+.bar nav a{
+  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.13em;
+  text-transform:uppercase;text-decoration:none;color:var(--muted);
+  padding-block:2px;border-bottom:1px solid transparent;
+  transition:color .18s ease,border-color .18s ease;
+}
+.bar nav a:hover{color:var(--ink);border-bottom-color:var(--web)}
+
+/* ============ hero ============ */
+.hero{padding-block:clamp(48px,8vw,96px) clamp(30px,5vw,48px)}
+.eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line);max-width:180px}
+h1{
+  font-size:clamp(2.7rem,8.4vw,5.4rem);
+  font-weight:800;
+  letter-spacing:-.04em;
+  line-height:.93;
+  max-width:13ch;
+}
+.lede{
+  margin-top:26px;
+  max-width:60ch;
+  font-size:clamp(1.08rem,1.7vw,1.3rem);
+  line-height:1.58;
+  color:var(--ink-2);
+  font-weight:300;
+}
+.lede em{font-style:italic;color:var(--ink)}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+.btn{
+  font-family:var(--f-mono);font-size:.72rem;letter-spacing:.11em;text-transform:uppercase;
+  text-decoration:none;padding:.85em 1.3em;border:1px solid var(--line);
+  border-radius:2px;color:var(--ink);background:var(--surface);
+  transition:border-color .18s ease,background .18s ease,color .18s ease;
+}
+.btn:hover{border-color:var(--ink);background:var(--bg-sunk)}
+.btn--key{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn--key:hover{background:var(--web);border-color:var(--web);color:var(--bg)}
+
+/* ============ the rig (hero schematic) ============ */
+.work-intro{margin-bottom:clamp(40px,5.5vw,60px)}
+.work-intro .rig-wrap{margin-top:0}
+.rig-wrap{
+  margin-top:clamp(40px,6vw,64px);
+  border:1px solid var(--line);
+  border-radius:3px;
+  background-color:var(--surface);
+  background-image:radial-gradient(circle at center, var(--dot) 1px, transparent 1px);
+  background-size:20px 20px;
+  padding:clamp(20px,3.6vw,34px);
+}
+.rig{
+  display:grid;
+  grid-template-columns:1fr 62px 1.22fr 62px 1fr;
+  align-items:center;
+}
+.node{
+  border:1px solid var(--line);
+  border-top:2px solid var(--nc,var(--line));
+  border-radius:2px;
+  background:var(--bg);
+  padding:14px 15px 15px;
+  min-width:0;
+}
+.node--web{--nc:var(--web)}
+.node--native{--nc:var(--native)}
+.node--core{--nc:var(--ink);background:var(--bg-sunk)}
+.node .kind{display:block;margin-bottom:7px;color:var(--nc)}
+.node .name{font-family:var(--f-display);font-weight:700;font-size:1.02rem;letter-spacing:-.015em;line-height:1.2}
+.node .stack{
+  margin-top:7px;font-family:var(--f-mono);font-size:.68rem;line-height:1.55;
+  color:var(--muted);letter-spacing:.01em;
+}
+.wire{position:relative;height:2px;background:var(--line);overflow:hidden}
+.pulse{
+  position:absolute;top:50%;width:7px;height:7px;margin-top:-3.5px;margin-left:-3.5px;
+  border-radius:50%;background:var(--pc);
+  animation:flowX 2.4s linear infinite;
+}
+.wire--a{--pc:var(--web)}
+.wire--b{--pc:var(--native)}
+.wire--b .pulse{animation-name:flowXrev;animation-delay:1.2s}
+@keyframes flowX{
+  0%{left:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:100%;opacity:0}
+}
+@keyframes flowXrev{
+  0%{left:100%;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:0;opacity:0}
+}
+@keyframes flowY{
+  0%{top:0;opacity:0}12%{opacity:1}88%{opacity:1}100%{top:100%;opacity:0}
+}
+@keyframes flowYrev{
+  0%{top:100%;opacity:0}12%{opacity:1}88%{opacity:1}100%{top:0;opacity:0}
+}
+.rig-note{
+  margin-top:20px;padding-top:16px;border-top:1px dashed var(--line);
+  font-size:.98rem;line-height:1.55;color:var(--ink-2);max-width:74ch;
+}
+.rig-note b{font-weight:500;color:var(--ink)}
+
+/* ============ sections ============ */
+section{padding-block:clamp(52px,8vw,92px);border-top:1px solid var(--line-soft)}
+.sec{display:grid;grid-template-columns:150px minmax(0,1fr);gap:clamp(22px,4vw,48px);align-items:stretch}
+.rail{position:relative}
+.rail-in{position:sticky;top:calc(env(safe-area-inset-top,0px) + 74px)}
+.rail .mono{display:block}
+.rail .bead{display:block;width:26px;height:2px;background:var(--rc,var(--ink));margin-top:10px}
+h2{font-size:clamp(1.65rem,3.6vw,2.35rem);letter-spacing:-.028em;line-height:1.08;margin-bottom:26px}
+.prose p + p{margin-top:1.05em}
+.prose{max-width:66ch;font-size:1.1rem;line-height:1.66;color:var(--ink-2)}
+.prose strong{font-weight:500;color:var(--ink)}
+
+/* ============ experience ============ */
+.job{border-top:1px solid var(--line);padding-top:24px;margin-top:38px}
+.job:first-child{border-top:0;margin-top:0;padding-top:0}
+.job-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 18px;margin-bottom:6px}
+.job-head h3{font-size:1.32rem;letter-spacing:-.02em}
+.job-head .when{font-family:var(--f-mono);font-size:.71rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.employer{
+  display:inline-flex;align-items:baseline;gap:7px;margin-top:4px;
+  font-family:var(--f-display);font-weight:600;font-size:1.04rem;letter-spacing:-.013em;
+  color:var(--web);text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:border-color .18s ease;
+}
+.employer:hover{border-bottom-color:currentColor}
+.employer .arw{font-family:var(--f-mono);font-size:.74rem;color:var(--muted)}
+.now{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--f-mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--web);background:var(--web-wash);border-radius:2px;padding:.3em .55em;
+}
+.now .blip{width:5px;height:5px;border-radius:50%;background:var(--web);animation:blip 2s ease-in-out infinite}
+@keyframes blip{0%,100%{opacity:1}50%{opacity:.25}}
+.duties{margin-top:20px;display:flex;flex-direction:column}
+.duties li{
+  display:grid;grid-template-columns:118px minmax(0,1fr);gap:16px;
+  padding-block:12px;border-top:1px solid var(--line-soft);
+  font-size:1.02rem;line-height:1.55;color:var(--ink-2);
+}
+.duties li:first-child{border-top:0;padding-top:0}
+.duties .tag{
+  font-family:var(--f-mono);font-size:.63rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);padding-top:.35em;
+}
+.duties b{font-weight:500;color:var(--ink)}
+.solo{font-size:1.05rem;line-height:1.6;color:var(--ink-2);margin-top:14px;max-width:66ch}
+
+/* ============ project ============ */
+.proj-title{font-size:clamp(1.5rem,3.2vw,2.05rem);letter-spacing:-.028em;line-height:1.12;max-width:20ch}
+.proj-sub{margin-top:16px;max-width:66ch;font-size:1.1rem;line-height:1.64;color:var(--ink-2)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:24px}
+.chip{
+  font-family:var(--f-mono);font-size:.68rem;letter-spacing:.02em;
+  border:1px solid var(--line);border-radius:2px;padding:.34em .6em;color:var(--muted);
+  background:var(--surface);
+}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.link{
+  display:inline-flex;align-items:baseline;gap:8px;text-decoration:none;
+  font-family:var(--f-mono);font-size:.71rem;letter-spacing:.09em;text-transform:uppercase;
+  border:1px solid var(--line);border-radius:2px;padding:.72em 1.05em;color:var(--ink);
+  background:var(--surface);transition:border-color .18s ease,background .18s ease;
+}
+.link:hover{border-color:var(--ink);background:var(--bg-sunk)}
+.link .arw{color:var(--muted);font-family:var(--f-mono)}
+
+.clients{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(26px,4vw,48px);margin-top:46px;align-items:start}
+.client{border-top:2px solid var(--cc);padding-top:16px}
+.client--web{--cc:var(--web)}
+.client--native{--cc:var(--native)}
+.client .mono{color:var(--cc)}
+.client h4{font-family:var(--f-display);font-weight:700;font-size:1.18rem;letter-spacing:-.02em;margin-top:8px}
+.feats{margin-top:18px;display:flex;flex-direction:column}
+.feats li{
+  padding-block:13px;border-top:1px solid var(--line-soft);
+  font-size:1rem;line-height:1.56;color:var(--ink-2);
+}
+.feats li:first-child{border-top:0;padding-top:0}
+.feats b{font-weight:500;color:var(--ink)}
+code{
+  font-family:var(--f-mono);font-size:.85em;
+  background:var(--shade);border-radius:2px;padding:.12em .34em;color:var(--ink);
+}
+
+/* ============ skills ============ */
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,36px)}
+.skillset{border-top:1px solid var(--line);padding-top:16px}
+.skillset ul{margin-top:12px;display:flex;flex-direction:column;gap:9px}
+.skillset li{font-family:var(--f-display);font-weight:600;font-size:1.02rem;letter-spacing:-.01em}
+
+/* ============ contact ============ */
+.contact-lead{font-size:1.12rem;line-height:1.6;color:var(--ink-2);max-width:56ch}
+.reach{margin-top:30px;border-top:1px solid var(--line)}
+.reach a{
+  display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:18px;align-items:center;
+  padding-block:16px;border-bottom:1px solid var(--line-soft);text-decoration:none;
+  transition:padding-left .2s ease,color .2s ease;
+}
+.reach a:hover{padding-left:8px;color:var(--web)}
+.reach .ico{display:flex;align-items:center;justify-content:center;color:var(--muted);transition:color .2s ease}
+.reach a:hover .ico{color:var(--web)}
+.reach .ico svg{display:block}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.reach .who{font-family:var(--f-display);font-weight:600;font-size:1.02rem;letter-spacing:-.01em;word-break:break-word}
+.reach .arw{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
+
+footer{
+  border-top:1px solid var(--line-soft);
+  padding-block:30px clamp(34px,5vw,54px);
+  display:flex;flex-wrap:wrap;gap:12px 22px;justify-content:space-between;align-items:baseline;
+}
+
+/* ============ narrow ============ */
+@media (max-width:860px){
+  .sec{grid-template-columns:1fr;gap:18px}
+  .rail-in{position:static;display:flex;align-items:center;gap:12px}
+  .rail .bead{margin-top:0;flex:none}
+  .clients{grid-template-columns:1fr;gap:34px}
+  .skills{grid-template-columns:1fr;gap:0}
+  .skillset{margin-top:22px}
+  .skillset:first-child{margin-top:0}
+}
+/* the rig now sits inside the work column, so it stacks earlier than the page does */
+@media (max-width:1000px){
+  .rig{grid-template-columns:1fr}
+  .wire{width:2px;height:40px;justify-self:center;margin-block:2px}
+  .pulse{left:50%;top:0;animation-name:flowY}
+  .wire--b .pulse{animation-name:flowYrev}
+}
+@media (max-width:680px){
+  .duties li{grid-template-columns:1fr;gap:5px}
+  .duties .tag{padding-top:0}
+  .reach a{grid-template-columns:28px minmax(0,1fr) auto;gap:13px}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .pulse{opacity:.9;left:50%;top:50%}
+}
+</style>
+
+<header class="bar">
+  <div class="page bar-in">
+    <a class="sig" href="#top">James Abad Gabriel <i>/ web developer</i></a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page" id="top">
+
+  <div class="hero">
+    <div class="eyebrow"><span class="mono">Web developer &middot; since 2022</span></div>
+    <h1>James Abad Gabriel</h1>
+    <p class="lede">Four years of turning ideas into applications that work &mdash; and that keep working once they leave the browser tab. I'm most interested in the <em>seams</em>: where a web app has to talk to a desktop client, where a slow query has to become a fast one, where a tangled workflow has to become an obvious one.</p>
+    <div class="cta">
+      <a class="btn btn--key" href="#work">See the work <span aria-hidden="true">&rarr;</span></a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="sec">
+      <div class="rail"><div class="rail-in"><span class="mono">About</span><span class="bead"></span></div></div>
+      <div>
+        <h2>Beyond the browser</h2>
+        <div class="prose">
+          <p>I'm a web developer with four years of experience turning ideas into functional, user-friendly applications. What excites me most about development is going beyond the browser &mdash; integrating web apps with desktop and mobile platforms to create experiences that feel connected and seamless across devices.</p>
+          <p>I have a genuine passion for problem-solving. Whether it's tracking down a stubborn bug, untangling a messy workflow, or finding a smarter way to structure a process, I enjoy the challenge of making things work better. For me, development isn't just about writing code &mdash; it's about <strong>building solutions that are efficient, reliable, and built to last</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sec">
+      <div class="rail"><div class="rail-in"><span class="mono">Experience</span><span class="bead"></span></div></div>
+      <div>
+        <h2>Where I've worked</h2>
+
+        <article class="job">
+          <div class="job-head">
+            <h3>Web Developer</h3>
+            <span class="when">April 2023 &ndash; present</span>
+            <span class="now"><span class="blip"></span>Current</span>
+          </div>
+          <a class="employer" href="https://www.agentsofvalue.com/" target="_blank" rel="noopener noreferrer">Eversun Software Philippines Corporation<span class="arw" aria-hidden="true">&#8599;</span></a>
+          <ul class="duties">
+            <li><span class="tag">Performance</span><span><b>Optimized system performance by up to 80%</b> &mdash; restructuring application flow, implementing caching, rewriting inefficient SQL queries, and redesigning database and table indexes based on actual usage patterns.</span></li>
+            <li><span class="tag">Infrastructure</span><span><b>Migrated the Laravel queue worker to a dedicated server</b>, resolving recurring server overload issues and improving overall system stability.</span></li>
+            <li><span class="tag">Backend</span><span><b>Refactored the backend codebase</b> for a cleaner, more maintainable architecture, introducing test scripts to support quality assurance.</span></li>
+            <li><span class="tag">Frontend</span><span><b>Refactored the React frontend to use context providers</b>, streamlining data flow and improving code structure.</span></li>
+            <li><span class="tag">Integration</span><span><b>Integrated two separate systems</b> via API-based data fetching and scheduled cron jobs, enabling real-time data synchronization across platforms.</span></li>
+            <li><span class="tag">Desktop</span><span><b>Developed and maintained a Python-based desktop application</b>, implementing UI updates and resolving bugs.</span></li>
+            <li><span class="tag">Frontend</span><span><b>Developed and maintained responsive website designs</b>, improving user experience across a range of devices.</span></li>
+            <li><span class="tag">Infrastructure</span><span><b>Configured and managed server-side infrastructure</b> to support application performance and reliability.</span></li>
+            <li><span class="tag">Documentation</span><span><b>Documented development processes</b>, creating comprehensive guides for future maintenance and updates.</span></li>
+          </ul>
+        </article>
+
+        <article class="job">
+          <div class="job-head">
+            <h3>Junior Programmer</h3>
+            <span class="when">September 2022 &ndash; March 2023</span>
+          </div>
+          <a class="employer" href="https://lstventures.com/" target="_blank" rel="noopener noreferrer">Lee Systems Technology Ventures<span class="arw" aria-hidden="true">&#8599;</span></a>
+          <p class="solo">Supported development of an accounting and payroll system across web (PHP) and desktop (C# Windows Forms) platforms, resolving bugs and implementing new features under senior developer guidance.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="sec">
+      <div class="rail"><div class="rail-in"><span class="mono">Selected work</span><span class="bead"></span></div></div>
+      <div>
+        <div class="work-intro">
+          <div class="rig-wrap">
+            <div class="rig">
+              <div class="node node--web">
+                <span class="kind mono">Client &middot; Browser</span>
+                <span class="name">Web SPA</span>
+                <span class="stack">React 19 + TypeScript<br>Tailwind CSS v4 &middot; Echo</span>
+              </div>
+              <div class="wire wire--a"><span class="pulse"></span></div>
+              <div class="node node--core">
+                <span class="kind mono">One backend</span>
+                <span class="name">Laravel 13 API &middot; Reverb</span>
+                <span class="stack">PostgreSQL &middot; Sanctum &middot; one set of accounts,<br>one real-time layer, one WebRTC signaling contract</span>
+              </div>
+              <div class="wire wire--b"><span class="pulse"></span></div>
+              <div class="node node--native">
+                <span class="kind mono">Client &middot; Native</span>
+                <span class="name">Desktop App</span>
+                <span class="stack">Python 3.14 &middot; PySide6/Qt<br>aiortc &middot; qasync</span>
+              </div>
+            </div>
+            <p class="rig-note">A browser user and a desktop user message and video-call each other <b>interchangeably</b>. The native client doesn't get a backend of its own &mdash; it replicates the web app's exact REST, WebSocket and WebRTC signaling contracts, verified end-to-end against the real backend at every build phase.</p>
+          </div>
+        </div>
+
+        <h2 class="proj-title">Full-stack SPA and native desktop client, on one backend</h2>
+        <p class="proj-sub">A multi-client messaging platform: a Laravel/React web SPA and a native Python desktop app sharing one backend, one set of accounts, and one real-time infrastructure &mdash; with auth, live messaging and 1:1 video calling working the same way on both.</p>
+
+        <div class="chips">
+          <span class="chip">Laravel 13 (API-only)</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">React 19</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">Tailwind CSS v4</span>
+          <span class="chip">Laravel Reverb</span>
+          <span class="chip">Sanctum</span>
+          <span class="chip">Python 3.14</span>
+          <span class="chip">PySide6 / Qt</span>
+          <span class="chip">aiortc (WebRTC)</span>
+          <span class="chip">qasync</span>
+        </div>
+
+        <div class="links">
+          <a class="link" href="https://mygab-app.duckdns.org/" target="_blank" rel="noopener noreferrer">Live demo <span class="arw" aria-hidden="true">&#8599;</span></a>
+          <a class="link" href="https://drive.google.com/file/d/1Od4Y7U45SIpR_T6ItsM_jH-0R1C5YBFQ/view?usp=sharing" target="_blank" rel="noopener noreferrer">Desktop build <span class="arw" aria-hidden="true">&#8599;</span></a>
+          <a class="link" href="https://github.com/jamesgabriel-github/RoleBasedAuth" target="_blank" rel="noopener noreferrer">Web repo <span class="arw" aria-hidden="true">&#8599;</span></a>
+          <a class="link" href="https://github.com/jamesgabriel-github/GabApp-Desktop" target="_blank" rel="noopener noreferrer">Desktop repo <span class="arw" aria-hidden="true">&#8599;</span></a>
+        </div>
+
+        <div class="clients">
+          <div class="client client--web">
+            <span class="mono">Client 01 &middot; Browser</span>
+            <h4>Web SPA</h4>
+            <ul class="feats">
+              <li><b>Dual-mode session auth</b> &mdash; Sanctum stateful cookies for the browser, with the same login endpoint branching to issue a Bearer token for non-browser clients (detected via Sanctum's own frontend-origin check), so one auth endpoint serves two fundamentally different client types without duplicating logic.</li>
+              <li><b>Layered RBAC</b> &mdash; enum-based roles (<code>client</code> / <code>admin</code> / <code>super admin</code>) combined with <code>spatie/laravel-permission</code>, enforced via middleware and policies on the backend and mirrored in the React UI.</li>
+              <li><b>OAuth via Socialite</b> &mdash; Google, Facebook and GitHub sign-in unified into the same session flow.</li>
+              <li><b>Real-time messaging</b> over Reverb and Echo, with per-participant read receipts and policy-enforced conversation privacy.</li>
+            </ul>
+          </div>
+
+          <div class="client client--native">
+            <span class="mono">Client 02 &middot; Native (GabApp)</span>
+            <h4>Desktop client</h4>
+            <ul class="feats">
+              <li><b>Interoperability by contract replication, not reinvention</b> &mdash; rather than build a separate backend surface, the desktop app replicates the web app's exact REST, WebSocket (Pusher protocol) and WebRTC signaling contracts, verified end-to-end against the real backend at each build phase.</li>
+              <li><b>Custom Pusher-protocol client</b> written from scratch over raw <code>websockets</code>, because the standard Python client (<code>pysher</code>) can only listen &mdash; it can't send the <code>client-*</code> whisper events that WebRTC call signaling requires.</li>
+              <li><b>1:1 video and voice calling via aiortc</b>, mirroring the browser's peer connection logic exactly &mdash; including matching an ICE-candidate queuing behavior needed because <code>aiortc</code> doesn't trickle ICE the way the browser does.</li>
+              <li><b>One asyncio event loop for everything</b> (<code>qasync</code>) &mdash; GUI, WebSocket client and WebRTC media all share a single loop instead of juggling threads.</li>
+              <li><b>Zero-config hardware handling</b> &mdash; camera and mic are auto-detected at runtime, including disambiguating Windows' merged microphone/speaker PnP class, so a packaged build runs unmodified on machines with unknown hardware.</li>
+              <li><b>Frictionless sign-up handoff</b> &mdash; "Sign up" opens the web app's registration page in the system browser, then auto-logs the desktop app in via a one-shot local loopback callback server, so there's no native registration form to keep in sync.</li>
+              <li><b>Standalone Windows build</b> packaged with PyInstaller &mdash; no Python install required on target machines.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec">
+      <div class="rail"><div class="rail-in"><span class="mono">Skills</span><span class="bead"></span></div></div>
+      <div>
+        <h2>What I build with</h2>
+        <div class="skills">
+          <div class="skillset">
+            <span class="mono">Backend</span>
+            <ul>
+              <li>Laravel</li>
+              <li>Python</li>
+              <li>C#</li>
+            </ul>
+          </div>
+          <div class="skillset">
+            <span class="mono">Frontend</span>
+            <ul>
+              <li>React</li>
+              <li>TypeScript</li>
+              <li>Tailwind CSS</li>
+            </ul>
+          </div>
+          <div class="skillset">
+            <span class="mono">Database</span>
+            <ul>
+              <li>PostgreSQL</li>
+              <li>MySQL</li>
+              <li>SQLite</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="sec">
+      <div class="rail"><div class="rail-in"><span class="mono">Contact</span><span class="bead"></span></div></div>
+      <div>
+        <h2>Let's talk</h2>
+        <p class="contact-lead">Open to work on web applications, cross-platform integrations, and the performance problems nobody else wants to look at.</p>
+        <div class="reach">
+          <a href="mailto:jamesgabrielbsit@gmail.com">
+            <span class="ico"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.75" width="19" height="14.5" rx="2.2"></rect><path d="m3.4 6.6 8.6 6.2 8.6-6.2"></path></svg></span>
+            <span class="sr">Email</span>
+            <span class="who">jamesgabrielbsit@gmail.com</span>
+            <span class="arw" aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="https://www.linkedin.com/in/jamesgabriel1234" target="_blank" rel="noopener noreferrer">
+            <span class="ico"><svg viewBox="0 0 24 24" width="21" height="21" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3.2 9h3.6v12H3.2V9zm6.1 0h3.45v1.64h.05c.48-.9 1.66-1.85 3.41-1.85 3.65 0 4.32 2.33 4.32 5.37V21h-3.6v-5.37c0-1.28-.03-2.93-1.82-2.93-1.82 0-2.1 1.39-2.1 2.83V21H9.3V9z"></path></svg></span>
+            <span class="sr">LinkedIn</span>
+            <span class="who">in/jamesgabriel1234</span>
+            <span class="arw" aria-hidden="true">&#8599;</span>
+          </a>
+          <a href="https://www.facebook.com/share/19JuE7qVFT/" target="_blank" rel="noopener noreferrer">
+            <span class="ico"><svg viewBox="0 0 24 24" width="21" height="21" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.19 2.24.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"></path></svg></span>
+            <span class="sr">Facebook</span>
+            <span class="who">facebook.com/share/19JuE7qVFT</span>
+            <span class="arw" aria-hidden="true">&#8599;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="mono">James Abad Gabriel &middot; Web developer</span>
+    <span class="mono">Built with Laravel, React &amp; Python</span>
+  </footer>
+
+</main>
