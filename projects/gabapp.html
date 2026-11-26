@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GabApp &middot; James Abad Gabriel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="page bar-in">
+    <a class="sig" href="../index.html#top">James Abad Gabriel <i>/ web developer</i></a>
+    <nav>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page" id="top">
+
+  <div class="crumb"><a class="back" href="../index.html#work">&larr; Selected work</a></div>
+
+  <section class="proj-page">
+    <div class="sec">
+      <div class="rail"><div class="rail-in"><span class="mono">Web + native</span><span class="bead"></span></div></div>
+      <div>
+        <div class="work-intro">
+          <div class="rig-wrap">
+            <div class="rig">
+              <div class="node node--web">
+                <span class="kind mono">Client &middot; Browser</span>
+                <span class="name">Web SPA</span>
+                <span class="stack">React 19 + TypeScript<br>Tailwind CSS v4 &middot; Echo</span>
+              </div>
+              <div class="wire wire--a"><span class="pulse"></span></div>
+              <div class="node node--core">
+                <span class="kind mono">One backend</span>
+                <span class="name">Laravel 13 API &middot; Reverb</span>
+                <span class="stack">PostgreSQL &middot; Sanctum &middot; one set of accounts,<br>one real-time layer, one WebRTC signaling contract</span>
+              </div>
+              <div class="wire wire--b"><span class="pulse"></span></div>
+              <div class="node node--native">
+                <span class="kind mono">Client &middot; Native</span>
+                <span class="name">Desktop App</span>
+                <span class="stack">Python 3.14 &middot; PySide6/Qt<br>aiortc &middot; qasync</span>
+              </div>
+            </div>
+            <p class="rig-note">A browser user and a desktop user message and video-call each other <b>interchangeably</b>. The native client doesn't get a backend of its own &mdash; it replicates the web app's exact REST, WebSocket and WebRTC signaling contracts, verified end-to-end against the real backend at every build phase.</p>
+          </div>
+        </div>
+
+        <h1 class="proj-title">Full-stack SPA and native desktop client, on one backend</h1>
+        <p class="proj-sub">A multi-client messaging platform: a Laravel/React web SPA and a native Python desktop app sharing one backend, one set of accounts, and one real-time infrastructure &mdash; with auth, live messaging and 1:1 video calling working the same way on both.</p>
+
+        <div class="chips">
+          <span class="chip">Laravel 13 (API-only)</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">React 19</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">Tailwind CSS v4</span>
+          <span class="chip">Laravel Reverb</span>
+          <span class="chip">Sanctum</span>
+          <span class="chip">Python 3.14</span>
+          <span class="chip">PySide6 / Qt</span>
+          <span class="chip">aiortc (WebRTC)</span>
+          <span class="chip">qasync</span>
+        </div>
+
+        <div class="links">
+          <a class="link" href="https://mygab-app.duckdns.org/" target="_blank" rel="noopener noreferrer">Live demo <span class="arw" aria-hidden="true">&#8599;</span></a>
+          <a class="link" href="https://drive.google.com/file/d/1Od4Y7U45SIpR_T6ItsM_jH-0R1C5YBFQ/view?usp=sharing" target="_blank" rel="noopener noreferrer">Desktop build <span class="arw" aria-hidden="true">&#8599;</span></a>
+          <a class="link" href="https://github.com/jamesgabriel-github/RoleBasedAuth" target="_blank" rel="noopener noreferrer">Web repo <span class="arw" aria-hidden="true">&#8599;</span></a>
+          <a class="link" href="https://github.com/jamesgabriel-github/GabApp-Desktop" target="_blank" rel="noopener noreferrer">Desktop repo <span class="arw" aria-hidden="true">&#8599;</span></a>
+        </div>
+
+        <div class="clients">
+          <div class="client client--web">
+            <span class="mono">Client 01 &middot; Browser</span>
+            <h4>Web SPA</h4>
+            <ul class="feats">
+              <li><b>Dual-mode session auth</b> &mdash; Sanctum stateful cookies for the browser, with the same login endpoint branching to issue a Bearer token for non-browser clients (detected via Sanctum's own frontend-origin check), so one auth endpoint serves two fundamentally different client types without duplicating logic.</li>
+              <li><b>Layered RBAC</b> &mdash; enum-based roles (<code>client</code> / <code>admin</code> / <code>super admin</code>) combined with <code>spatie/laravel-permission</code>, enforced via middleware and policies on the backend and mirrored in the React UI.</li>
+              <li><b>OAuth via Socialite</b> &mdash; Google, Facebook and GitHub sign-in unified into the same session flow.</li>
+              <li><b>Real-time messaging</b> over Reverb and Echo, with per-participant read receipts and policy-enforced conversation privacy.</li>
+            </ul>
+          </div>
+
+          <div class="client client--native">
+            <span class="mono">Client 02 &middot; Native (GabApp)</span>
+            <h4>Desktop client</h4>
+            <ul class="feats">
+              <li><b>Interoperability by contract replication, not reinvention</b> &mdash; rather than build a separate backend surface, the desktop app replicates the web app's exact REST, WebSocket (Pusher protocol) and WebRTC signaling contracts, verified end-to-end against the real backend at each build phase.</li>
+              <li><b>Custom Pusher-protocol client</b> written from scratch over raw <code>websockets</code>, because the standard Python client (<code>pysher</code>) can only listen &mdash; it can't send the <code>client-*</code> whisper events that WebRTC call signaling requires.</li>
+              <li><b>1:1 video and voice calling via aiortc</b>, mirroring the browser's peer connection logic exactly &mdash; including matching an ICE-candidate queuing behavior needed because <code>aiortc</code> doesn't trickle ICE the way the browser does.</li>
+              <li><b>One asyncio event loop for everything</b> (<code>qasync</code>) &mdash; GUI, WebSocket client and WebRTC media all share a single loop instead of juggling threads.</li>
+              <li><b>Zero-config hardware handling</b> &mdash; camera and mic are auto-detected at runtime, including disambiguating Windows' merged microphone/speaker PnP class, so a packaged build runs unmodified on machines with unknown hardware.</li>
+              <li><b>Frictionless sign-up handoff</b> &mdash; "Sign up" opens the web app's registration page in the system browser, then auto-logs the desktop app in via a one-shot local loopback callback server, so there's no native registration form to keep in sync.</li>
+              <li><b>Standalone Windows build</b> packaged with PyInstaller &mdash; no Python install required on target machines.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a class="back" href="../index.html#work">&larr; Back to all work</a>
+    <span class="mono">James Abad Gabriel &middot; Web developer</span>
+  </footer>
+
+</main>
+</body>
+</html>

@@ -60,6 +60,85 @@ A multi-client messaging platform: a Laravel/React web SPA and a native Python d
 - Frictionless sign-up handoff — clicking "Sign up" opens the web app's registration page in the system browser, then auto-logs the desktop app in via a one-shot local loopback callback server — no native registration form to keep in sync with the web one.
 - Packaged as a standalone Windows build via PyInstaller (`dist/GabApp/`) — no Python install required on target machines.
 
+### LanChat — Peer-to-Peer Messaging and Video Calling App That Works With No Internet
+
+An Android app that lets people nearby message and video call each other with no internet and no server. Any phones on the same Wi-Fi or phone hotspot find each other on their own, even when that network has no internet connection. All chats stay on the phones.
+
+**Tech Stack:** .NET MAUI Blazor Hybrid · C# / .NET 10 · TCP/UDP · WebRTC · SQLite · xUnit · HTML/CSS · Android
+
+**APK download:** [Google Drive](https://drive.google.com/file/d/1S_avpJcFVzQIID7j3Tl5P9oH8i6XPBbX/view?usp=sharing)
+
+#### The problem
+
+- No internet, no contact — every message has to travel to a server and back, so people on the same network with no uplink can't reach each other.
+- Finding each other — a local network has no accounts or phone numbers, and phones get new IP addresses whenever they reconnect, so an address can't serve as an identity.
+
+#### The solution
+
+- Find people nearby automatically — every phone announces itself every 2 seconds while LanChat is open, so others appear in the Nearby list within about 2 seconds with no setup, sign-up or pairing. The device code (made from a key pair created on first launch) is the identity and the IP address is only how to reach it, so a reconnecting phone keeps its name, code and chat history. People you have chatted with are kept as Contacts with "Last seen …".
+- Messages that don't get lost — messages go straight from phone to phone and are acknowledged (✓ sent, ✓✓ arrived). A message typed while the other person is away waits in an outbox and sends itself when they return; a resent message is never shown twice. Chats, contacts and the outbox are saved on the phone, and a notification opens the chat.
+- Video calls without a server — one-to-one audio and video calls start from the chat header, with a ringing screen or a notification with Accept and Decline. Setup travels over the same phone-to-phone link as the chat, with no calling server or relay. Missed, declined and finished calls show as rows in the chat.
+- Active, Away or Offline — Active (LanChat open) and Away (app closed, phone on the network and receiving) both receive messages at once, Away with a notification; Offline (out of range, no Wi-Fi, or receiving off) messages wait in the outbox. A quiet phone is shown Offline only after a quick connection check fails.
+- Storage that stays in check — at 5,000 messages a notice shows the count and space used (e.g. "6,005 messages, about 1.2 MB"). Free up space deletes messages older than 30 days, 90 days or 1 year, or all of them, showing the count and space freed first; only this phone is affected, queued messages are kept, and the database is compacted. Not now hides the notice until the chat grows by another 5,000 messages.
+
+#### Battery optimization
+
+- Sleep by default — with the app closed, no wake lock is held, other phones' broadcasts are ignored, and the phone announces itself every 30 seconds instead of every 2.
+- Wake only for messages — the Wi-Fi chip wakes the phone when a connection addressed to it arrives; LanChat stays awake 3 to 10 seconds to save, notify and acknowledge, then sleeps again.
+- The sender does the work — each phone remembers its contacts' last addresses and dials a sleeping phone directly.
+- No needless wake-ups — idle connections close after 60 seconds, background checks run only while the app is open, and nothing relies on timers.
+- This replaced a first fix that kept the CPU awake the whole time, after testing showed the real failure was on the sending side. The app counts its background activity (aiming for under one minute awake on a quiet night), and Settings links to Android's battery settings.
+
+#### Technical approach
+
+- Plain networking, no infrastructure — UDP broadcasts for discovery and direct TCP connections for chat, each message a length-prefixed JSON frame. Works on any home router or phone hotspot, with mobile data on or off.
+- Identity that can't be faked casually — each phone makes an ECDsa P-256 key pair on first launch and keeps the private key in Android's secure storage; the device code is a hash of the public key, and a phone presenting a code that doesn't match its key is dropped.
+- Calls with what the phone already has — WebRTC built into the app's WebView, call setup over the existing chat link, no STUN or TURN servers, media encrypted between the two phones.
+- Web skills, native app — built in C# on .NET 10 with .NET MAUI Blazor Hybrid; the screens started as XAML pages and moved to Blazor Hybrid early so they could be built with HTML and CSS from a design prototype.
+- Testable rules — discovery, messaging, the outbox, calls, background modes and wake holds live in plain C# libraries with no MAUI code; xUnit tests run two real nodes against each other over loopback, and a console app acts as a second "phone" on a PC.
+- Built to change safely — every announcement and handshake carries a protocol version (now 6) and the oldest version it still understands, so an older app sees "ask them to update" instead of a peer silently missing.
+- Offline storage — chats, contacts and the outbox live in SQLite on the phone, with backups turned off so a key never ends up on two phones.
+
+#### Outcome
+
+- People on the same Wi-Fi or hotspot can message and call each other with no internet, no accounts and no server.
+- Messages to someone who stepped away wait and arrive when they're back, never twice.
+- A closed app keeps receiving without holding the phone awake.
+
+### RoastIT — Offline Booking and Ordering App for Roasting Businesses
+
+An offline booking and ordering app for businesses that sell roasted products, built first for Litson Haus, a lechon roasting shop. It runs on one shared Android phone at the counter, and all data stays on that phone.
+
+**Tech Stack:** .NET MAUI Blazor Hybrid · C# · SQLite · EF Core · xUnit · HTML/CSS · Android
+
+**APK download:** [Google Drive](https://drive.google.com/file/d/1mOhtC-Zu4Xy4QZyB7II5jD4jU3CdyIrz/view?usp=sharing)
+
+#### The problem
+
+- Manual recording — bookings, weights, prices, payments and balances were written down and totalled by hand, so entries got lost or misread and there was no reliable payment history.
+- Missed bookings — nothing told staff that a roast should already have started, so a pending order could sit forgotten until the customer arrived.
+- Kitchen load — a list of pickup times doesn't show how many roasts overlap at a given hour, so the owner couldn't tell whether a new booking would fit.
+
+#### The solution
+
+- Automated booking records — every product line gets its own booking ID (`YYMMDD-NNN`); totals are computed from per-kilo menu prices; bookings move through Pending → Cooking → Cooked → Completed; payments, discounts and balances are tracked per order with a saved history; a daily dashboard shows revenue, amount collected, balance due and product mix; data is protected by a PIN lock, an exportable backup and an automatic hourly CSV of nearby bookings.
+- Missed-booking alerts — each menu item has a cooking time, so the start time is pickup time − cooking time. A Pending booking past that time gets a red stripe and a "Late to start · was due 3:00 PM (20 min ago)" line, escalating to "Not started · pickup was …" once the pickup time passes. The list updates every minute and whenever the app is reopened.
+- Kitchen load chart — for today or any future date, shows how many items are on the roasters at each hour. Cooking bookings count from when they actually started; Pending bookings count from their planned start until pickup, with late ones moved to start "now". Tapping a bar shows details such as "3 cooking · 1:00 PM – 3:00 PM". The owner uses it to check capacity before accepting a booking.
+
+#### Technical approach
+
+- Planned first as a web app (React, ASP.NET Core API, PostgreSQL), then rebuilt as a standalone .NET MAUI Blazor Hybrid app, because the shop runs everything from one shared phone and a server, accounts and live sync would have added cost and failure points without solving a real problem.
+- Web skills, native app — Blazor Hybrid draws screens with HTML and CSS inside a native shell; every screen was designed first as an HTML prototype and its CSS carried straight into the app with no CSS framework.
+- Offline by design — bookings live in SQLite on the phone via EF Core; schema updates run on the device at startup, after a safety copy of the database is saved.
+- Testable rules — booking IDs, balances, the late-start alert and the kitchen load live in a plain C# library with no UI or database code, tested with xUnit against real SQLite.
+- Built for the shop — money is stored as whole centavos to avoid rounding errors, and "today" always follows Manila time even if the phone's time zone is wrong.
+
+#### Outcome
+
+- One accurate record replaces handwritten booking notes.
+- Forgotten roasts show up the minute they are late, not when the customer arrives.
+- New bookings are accepted based on what the kitchen can actually handle at that hour.
+
 ---
 
 ## Skills

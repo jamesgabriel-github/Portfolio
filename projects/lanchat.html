@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LanChat &middot; James Abad Gabriel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="page bar-in">
+    <a class="sig" href="../index.html#top">James Abad Gabriel <i>/ web developer</i></a>
+    <nav>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page" id="top">
+
+  <div class="crumb"><a class="back" href="../index.html#work">&larr; Selected work</a></div>
+
+  <section class="proj-page">
+    <div class="sec">
+      <div class="rail"><div class="rail-in"><span class="mono">Mobile app</span><span class="bead"></span></div></div>
+      <div>
+        <h1 class="proj-title">Peer-to-peer messaging and video calling app that works with no internet</h1>
+        <p class="proj-sub">LanChat is an Android app that lets people nearby message and video call each other with no internet and no server. Any phones on the same Wi-Fi or phone hotspot find each other on their own, even when that network has no internet connection, and all chats stay on the phones.</p>
+
+        <div class="chips">
+          <span class="chip">.NET MAUI Blazor Hybrid</span>
+          <span class="chip">C# / .NET 10</span>
+          <span class="chip">TCP / UDP</span>
+          <span class="chip">WebRTC</span>
+          <span class="chip">SQLite</span>
+          <span class="chip">xUnit</span>
+          <span class="chip">HTML / CSS</span>
+          <span class="chip">Android</span>
+        </div>
+
+        <div class="links">
+          <a class="link link--key" href="https://drive.google.com/file/d/1S_avpJcFVzQIID7j3Tl5P9oH8i6XPBbX/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download APK <span class="arw" aria-hidden="true">&#8599;</span></a>
+        </div>
+
+        <div class="block">
+          <span class="mono">In the app</span>
+          <h2 class="block-title">From the Nearby list to a call, and keeping storage in check</h2>
+          <ol class="shots">
+            <li>
+              <figure>
+                <img src="lanchat/01-nearby.png" width="780" height="1688" loading="lazy" alt="LanChat home screen with a Nearby list showing Ana Reyes and Bob, each with a green active dot, and a Contacts list with Carlo Santos and Dana, including a queued message and a video call row.">
+                <figcaption><span class="mono">01</span><b>Nearby, with no setup</b>Phones on the same network appear as Name &middot; Model &middot; device code. Earlier chats stay as Contacts.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img src="lanchat/02-chat.png" width="780" height="1688" loading="lazy" alt="Chat with Ana Reyes showing she is online, a note that messages go straight to her phone over this Wi-Fi, and sent messages with double check marks.">
+                <figcaption><span class="mono">02</span><b>Phone-to-phone chat</b>Each message is acknowledged, so the sender sees &#10003; when it is sent and &#10003;&#10003; when it arrives.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img src="lanchat/03-video-call.png" width="780" height="1688" loading="lazy" alt="In-call screen for Ana Reyes with a running timer, her device model and code, and mute, speaker and hang-up buttons.">
+                <figcaption><span class="mono">03</span><b>Calls with no calling server</b>Audio and video calls start from the chat header and are set up over the same phone-to-phone link.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img src="lanchat/04-large-chat.png" width="780" height="1688" loading="lazy" alt="Chat with a warning banner: This chat is getting large, 6,005 messages, about 1.2 MB on this phone, with Free up space and Not now buttons.">
+                <figcaption><span class="mono">04</span><b>Large-chat notice</b>At 5,000 messages the chat says how many messages it holds and how much space they take.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img src="lanchat/05-free-up-space.png" width="780" height="1688" loading="lazy" alt="Free up space dialog listing older than 30 days, 90 days, 1 year or all messages with their counts, and a line saying 4,651 messages would be deleted, freeing about 969 KB.">
+                <figcaption><span class="mono">05</span><b>Free up space</b>Each choice shows how many messages it removes and how much space it frees before anything is deleted.</figcaption>
+              </figure>
+            </li>
+          </ol>
+        </div>
+
+        <div class="block">
+          <span class="mono">The problem</span>
+          <h2 class="block-title">A local network is often there when the internet isn't</h2>
+          <ul class="duties">
+            <li><span class="tag">No internet, no contact</span><span><b>Every message has to travel to a server and back.</b> With a router that has no uplink, a hotspot with no load or a site with weak signal, people in the same room are on one network, but their apps can't reach each other.</span></li>
+            <li><span class="tag">Finding each other</span><span><b>A local network has no accounts or phone numbers to search.</b> Phones get a new IP address whenever they reconnect, so an address can't serve as someone's identity, and a chat history tied to one breaks.</span></li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <span class="mono">The solution</span>
+          <h2 class="block-title">Find, message, call, and know what to expect</h2>
+          <div class="clients clients--three">
+            <div class="client client--web">
+              <span class="mono">01 &middot; Discovery</span>
+              <h4>Find people nearby automatically</h4>
+              <ul class="feats">
+                <li><b>Every phone announces itself every 2 seconds</b> while LanChat is open, so others appear in the Nearby list within about 2 seconds, with no setup, sign-up or pairing.</li>
+                <li><b>The device code is the identity.</b> Each person shows as Name &middot; Model &middot; <code>#4F2A</code>, a short form of a code made from a key pair the phone creates on first launch.</li>
+                <li><b>The IP address is only how to reach it.</b> A phone that reconnects and gets a new IP keeps its name, its code and its chat history.</li>
+                <li><b>Contacts</b> are everyone you have chatted with, with &ldquo;Last seen &hellip;&rdquo; when they are not around.</li>
+              </ul>
+            </div>
+
+            <div class="client client--native">
+              <span class="mono">02 &middot; Messages</span>
+              <h4>Messages that don't get lost</h4>
+              <ul class="feats">
+                <li><b>Straight from phone to phone,</b> acknowledged so the sender sees &#10003; when sent and &#10003;&#10003; when it arrives.</li>
+                <li><b>An outbox for people who are away.</b> A message typed while the other person is away waits (&#128339;) and sends itself when they come back. A resent message is never shown twice.</li>
+                <li><b>Saved on the phone.</b> Chats, contacts and the outbox survive restarts, and single messages or whole chats can be deleted.</li>
+                <li><b>A notification for new messages;</b> tapping it opens that chat.</li>
+              </ul>
+            </div>
+
+            <div class="client client--ink">
+              <span class="mono">03 &middot; Calls</span>
+              <h4>Video calls without a server</h4>
+              <ul class="feats">
+                <li><b>One-to-one audio and video calls</b> start from the chat header.</li>
+                <li><b>The callee gets a ringing screen</b> in the app, or a notification with Accept and Decline.</li>
+                <li><b>No calling server or relay.</b> The call is set up over the same phone-to-phone link the chat uses.</li>
+                <li><b>Missed, declined and finished calls</b> show as rows in the chat.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="clients clients--two">
+            <div class="client client--web">
+              <span class="mono">04 &middot; Presence</span>
+              <h4>Active, Away or Offline</h4>
+              <ul class="feats">
+                <li><b>Active (filled dot)</b> &mdash; LanChat is open on their phone. Messages arrive at once.</li>
+                <li><b>Away (hollow dot)</b> &mdash; app closed, but the phone is on this network and receiving. Messages arrive at once and notify.</li>
+                <li><b>Offline (no dot)</b> &mdash; out of range, no Wi-Fi, or receiving switched off. Messages wait in the outbox.</li>
+                <li><b>Not marked Offline right away.</b> A phone that goes quiet may just be asleep, so it is shown Offline only after a quick connection check fails.</li>
+              </ul>
+            </div>
+
+            <div class="client client--native">
+              <span class="mono">05 &middot; Storage</span>
+              <h4>Storage that stays in check</h4>
+              <ul class="feats">
+                <li><b>A notice at 5,000 messages</b> says the chat is getting large, with the message count and the space it takes, for example &ldquo;6,005 messages, about 1.2 MB&rdquo;.</li>
+                <li><b>Free up space</b> deletes messages older than 30 days, 90 days or 1 year, or all of them, and shows the count and space freed first.</li>
+                <li><b>Only this phone is affected.</b> The other person keeps their copy, queued messages are kept, and the database is compacted so the space really comes back.</li>
+                <li><b>Not now</b> hides the notice until the chat grows by another 5,000 messages.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <span class="mono">Battery optimization</span>
+          <h2 class="block-title">Receiving with the screen off, without keeping the phone awake</h2>
+          <ul class="duties">
+            <li><span class="tag">Sleep by default</span><span><b>With the app closed, LanChat holds no wake lock,</b> ignores other phones' broadcasts, and announces itself every 30 seconds instead of every 2.</span></li>
+            <li><span class="tag">Wake for messages</span><span><b>The Wi-Fi chip wakes the phone</b> when a connection addressed to it arrives. LanChat stays awake 3 to 10 seconds to save the message, notify and acknowledge, then sleeps again.</span></li>
+            <li><span class="tag">Sender does the work</span><span><b>Each phone remembers its contacts' last addresses</b> and dials a sleeping phone directly, so the sleeping phone never has to stay visible.</span></li>
+            <li><span class="tag">No needless wake-ups</span><span><b>Idle connections close after 60 seconds,</b> background checks run only while someone has the app open, and nothing relies on timers, which can't wake a sleeping phone.</span></li>
+            <li><span class="tag">Measured, not assumed</span><span><b>This replaced a first fix that kept the CPU awake the whole time,</b> after testing showed the real failure was on the sending side. The app counts its background activity, aiming for under one minute awake on a quiet night, and Settings links to Android's battery settings for phones that stop background apps.</span></li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <span class="mono">Technical approach</span>
+          <h2 class="block-title">Every phone is both client and server</h2>
+          <ul class="duties">
+            <li><span class="tag">Plain networking</span><span><b>UDP broadcasts for discovery and direct TCP connections for chat,</b> each message a length-prefixed JSON frame. It works on any home router or phone hotspot, with mobile data on or off, and there is nothing else to run or pay for.</span></li>
+            <li><span class="tag">Identity</span><span><b>Each phone makes an ECDsa P-256 key pair on first launch</b> and keeps the private key in Android's secure storage. The device code is a hash of the public key, and a phone that presents a code not matching its key is dropped.</span></li>
+            <li><span class="tag">Calls</span><span><b>Video calls use the WebRTC built into the app's WebView.</b> Call setup travels over the existing chat link, with no STUN or TURN servers, and the media is encrypted between the two phones.</span></li>
+            <li><span class="tag">Web skills, native app</span><span><b>Built in C# on .NET 10 with .NET MAUI Blazor Hybrid.</b> The screens started as XAML pages and were moved to Blazor Hybrid early, so they could be built with HTML and CSS from a design prototype.</span></li>
+            <li><span class="tag">Testable rules</span><span><b>Discovery, messaging, the outbox, calls, background modes and wake holds</b> live in plain C# libraries with no MAUI code. xUnit tests run two real nodes against each other over loopback, and a console app acts as a second &ldquo;phone&rdquo; on a PC.</span></li>
+            <li><span class="tag">Built to change safely</span><span><b>Every announcement and handshake carries a protocol version</b> (now 6) and the oldest version it still understands, so an older app sees &ldquo;ask them to update&rdquo; instead of a peer silently missing.</span></li>
+            <li><span class="tag">Offline storage</span><span><b>Chats, contacts and the outbox live in a SQLite database on the phone,</b> with backups turned off so a key never ends up on two phones.</span></li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <span class="mono">Outcome</span>
+          <h2 class="block-title">What changed for people on the same network</h2>
+          <ul class="feats outcome">
+            <li><b>People on the same Wi-Fi or hotspot can message and call each other</b> with no internet, no accounts and no server.</li>
+            <li><b>Messages to someone who stepped away wait</b> and arrive when they're back, never twice.</li>
+            <li><b>A closed app keeps receiving</b> without holding the phone awake.</li>
+          </ul>
+          <p class="solo">LanChat is designed around how people nearby actually connect: a shared network with no internet, phones that change addresses, and phones that spend most of the day asleep.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a class="back" href="../index.html#work">&larr; Back to all work</a>
+    <span class="mono">James Abad Gabriel &middot; Web developer</span>
+  </footer>
+
+</main>
+</body>
+</html>

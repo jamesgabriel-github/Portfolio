@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RoastIT &middot; James Abad Gabriel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="page bar-in">
+    <a class="sig" href="../index.html#top">James Abad Gabriel <i>/ web developer</i></a>
+    <nav>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page" id="top">
+
+  <div class="crumb"><a class="back" href="../index.html#work">&larr; Selected work</a></div>
+
+  <section class="proj-page">
+    <div class="sec">
+      <div class="rail"><div class="rail-in"><span class="mono">Mobile app</span><span class="bead"></span></div></div>
+      <div>
+        <h1 class="proj-title">Offline booking and ordering app for roasting businesses</h1>
+        <p class="proj-sub">Roasting businesses take orders days ahead, each with a pickup time, and every product needs hours on the roaster first. When those bookings are tracked by hand, records get lost, forgotten orders aren't noticed until the customer arrives, and the owner has no easy way to tell if the kitchen can take on another booking. RoastIT fixes this by replacing the handwritten records, flagging any booking that should already be cooking, and showing the kitchen's load hour by hour.</p>
+
+        <div class="chips">
+          <span class="chip">.NET MAUI Blazor Hybrid</span>
+          <span class="chip">C#</span>
+          <span class="chip">SQLite</span>
+          <span class="chip">EF Core</span>
+          <span class="chip">xUnit</span>
+          <span class="chip">HTML / CSS</span>
+          <span class="chip">Android</span>
+        </div>
+
+        <div class="links">
+          <a class="link link--key" href="https://drive.google.com/file/d/1mOhtC-Zu4Xy4QZyB7II5jD4jU3CdyIrz/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download APK <span class="arw" aria-hidden="true">&#8599;</span></a>
+        </div>
+
+        <div class="block">
+          <span class="mono">In the app</span>
+          <h2 class="block-title">From a new booking to the kitchen load chart</h2>
+          <ol class="shots">
+            <li>
+              <figure>
+                <img src="roastit/01-new-booking.png" width="780" height="1688" loading="lazy" alt="New booking screen with two items, Lechon Head at 5 kg and Lechon Chicken at 2 kg, and an order total of 520 pesos.">
+                <figcaption><span class="mono">01</span><b>Add a booking</b>Pick the pickup time, the products and their weight. The total uses the per-kilo prices.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img src="roastit/02-booking-ids.png" width="780" height="1688" loading="lazy" alt="Confirmation dialog: 2 bookings created, with booking IDs 261009-004 and 261009-005.">
+                <figcaption><span class="mono">02</span><b>Booking IDs issued</b>Each product gets its own booking ID, ready to write on the order slip.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img src="roastit/03-late-alert.png" width="780" height="1688" loading="lazy" alt="Booking cards with a red stripe and the message: Late to start, was due 3:00 PM, 20 minutes ago, plus a highlighted Start cooking button.">
+                <figcaption><span class="mono">03</span><b>Late-to-start alert</b>A Pending booking past its start time (pickup minus cooking time) turns red.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img src="roastit/04-booking-list.png" width="780" height="1688" loading="lazy" alt="Compact booking list where every late booking carries a Late tag and a red stripe.">
+                <figcaption><span class="mono">04</span><b>Spot late bookings fast</b>The compact list tags every late booking, so nothing gets forgotten.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img src="roastit/05-booking-detail.png" width="780" height="1688" loading="lazy" alt="Booking detail for 261009-001 showing Start cooking by 3:00 PM with a Late 20 min badge, and the payment summary with a balance due of 620 pesos.">
+                <figcaption><span class="mono">05</span><b>Start cooking by</b>The booking detail shows when it should have gone on the roaster, with payments and balance.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img src="roastit/06-kitchen-load.png" width="780" height="1688" loading="lazy" alt="Dashboard with a kitchen load bar chart of items cooking per hour, a product mix list and balances due.">
+                <figcaption><span class="mono">06</span><b>Kitchen load</b>How many items are roasting at each hour. Tap a bar to check a time slot.</figcaption>
+              </figure>
+            </li>
+          </ol>
+        </div>
+
+        <div class="block">
+          <span class="mono">The problem</span>
+          <h2 class="block-title">Orders are taken days ahead, and every product spends hours on the roaster</h2>
+          <ul class="duties">
+            <li><span class="tag">Manual recording</span><span><b>Totals were added up by hand.</b> Bookings, weights, prices, payments and balances were written down and totalled on paper. Entries got lost or misread, and there was no reliable history of who paid what.</span></li>
+            <li><span class="tag">Missed bookings</span><span><b>Nothing said a roast should already have started.</b> A pending order could sit forgotten until the customer arrived to pick it up.</span></li>
+            <li><span class="tag">Kitchen load</span><span><b>A list of pickup times doesn't show overlap.</b> The owner couldn't easily tell whether a new booking at a given pickup time would fit, or whether the roasters would already be full.</span></li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <span class="mono">The solution</span>
+          <h2 class="block-title">Three problems, three features</h2>
+          <div class="clients clients--three">
+            <div class="client client--web">
+              <span class="mono">01 &middot; Records</span>
+              <h4>Automated booking records</h4>
+              <ul class="feats">
+                <li><b>One ID per product line</b> in the form <code>YYMMDD-NNN</code>, for example <code>261009-001</code>.</li>
+                <li><b>Totals come from the menu.</b> Quantities are weights in kilos and prices are per kilo, so nothing is added up by hand.</li>
+                <li><b>Clear status</b> &mdash; each booking moves through Pending, Cooking, Cooked and Completed.</li>
+                <li><b>Payments, discounts and balances</b> are tracked per order, and every change is saved in a history.</li>
+                <li><b>Daily dashboard</b> showing revenue, amount collected, balance due and which products are selling.</li>
+                <li><b>Protected data</b> &mdash; a PIN lock, an exportable backup file, and an automatic hourly CSV of nearby bookings.</li>
+              </ul>
+            </div>
+
+            <div class="client client--native">
+              <span class="mono">02 &middot; Alerts</span>
+              <h4>Missed-booking alerts</h4>
+              <ul class="feats">
+                <li><b>Start time is computed.</b> Each menu item has a cooking time, so every booking has a start time of pickup minus cooking time.</li>
+                <li><b>Flagged the moment it's late.</b> A Pending booking past that time gets a red stripe, a line such as &ldquo;Late to start &middot; was due 3:00 PM (20 min ago)&rdquo;, and a highlighted &ldquo;Start cooking&rdquo; button.</li>
+                <li><b>Escalates at pickup.</b> If the pickup time passes too, it reads &ldquo;Not started &middot; pickup was &hellip;&rdquo;.</li>
+                <li><b>Always current.</b> The list updates every minute and whenever the app is reopened, and tapping &ldquo;Start cooking&rdquo; clears the alert.</li>
+                <li><b>Example:</b> a 2-hour Lechon Belly for a 5:00 PM pickup is flagged at exactly 3:00 PM if it hasn't been started.</li>
+              </ul>
+            </div>
+
+            <div class="client client--ink">
+              <span class="mono">03 &middot; Capacity</span>
+              <h4>Kitchen load chart</h4>
+              <ul class="feats">
+                <li><b>Items on the roasters, per hour,</b> for today or any future date.</li>
+                <li><b>Cooking bookings</b> count from the time they actually started.</li>
+                <li><b>Pending bookings</b> count from their planned start until pickup. Late ones are moved to start &ldquo;now&rdquo;, so the chart shows the real load.</li>
+                <li><b>Tap a bar</b> for details such as &ldquo;3 cooking &middot; 1:00 PM &ndash; 3:00 PM&rdquo;.</li>
+                <li><b>How it's used:</b> when a customer asks for a 4:00 PM pickup, the owner opens that date and checks the hours before it. If the roasters are already at capacity, the owner can suggest another time before accepting. The app shows the load and the owner makes the call.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <span class="mono">Technical approach</span>
+          <h2 class="block-title">A standalone app instead of a server</h2>
+          <ul class="duties">
+            <li><span class="tag">Web skills, native app</span><span><b>Blazor Hybrid draws the screens with HTML and CSS</b> inside a native shell. Every screen was designed first as an HTML prototype, and its CSS carried straight into the app without a CSS framework.</span></li>
+            <li><span class="tag">Offline by design</span><span><b>Bookings live in SQLite on the phone,</b> accessed through EF Core. Schema updates run on the device at startup, after a safety copy of the database is saved.</span></li>
+            <li><span class="tag">Testable rules</span><span><b>Booking IDs, balances, the late-start alert and the kitchen load</b> all live in a plain C# library with no UI or database code. xUnit tests run them against real SQLite, with no phone or emulator needed.</span></li>
+            <li><span class="tag">Built for the shop</span><span><b>Money is stored as whole centavos</b> to avoid rounding errors, and &ldquo;today&rdquo; always follows Manila time, even if the phone's time zone is set wrong.</span></li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <span class="mono">Outcome</span>
+          <h2 class="block-title">What changed at the counter</h2>
+          <ul class="feats outcome">
+            <li><b>One accurate record</b> replaces handwritten booking notes.</li>
+            <li><b>Forgotten roasts show up the minute they are late,</b> not when the customer arrives.</li>
+            <li><b>New bookings are accepted based on what the kitchen can actually handle</b> at that hour.</li>
+          </ul>
+          <p class="solo">RoastIT is designed around how roasted-product businesses work: orders tied to pickup times, products that take hours to cook, and a kitchen with limited roaster space.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a class="back" href="../index.html#work">&larr; Back to all work</a>
+    <span class="mono">James Abad Gabriel &middot; Web developer</span>
+  </footer>
+
+</main>
+</body>
+</html>
